@@ -8,7 +8,9 @@
         body {
             margin: 0;
             padding: 0;
-            background: #000; 
+            /* وضع رابط الـ GIF الجديد كخلفية ثابتة */
+            background: url('https://image2url.com/r2/default/gifs/1775029792172-49301b75-aaed-494d-99b9-67144656a6c9.gif') no-repeat center center fixed;
+            background-size: cover;
             font-family: 'Courier New', Courier, monospace;
             color: #ff0000;
             display: flex;
@@ -20,18 +22,12 @@
             overflow: hidden;
         }
 
-        #bg-video {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-
         .content {
             z-index: 1;
+            /* إضافة تعتيم خفيف خلف الكلام لضمان وضوحه مع الـ GIF */
+            background: rgba(0, 0, 0, 0.4); 
+            padding: 20px;
+            border-radius: 15px;
         }
 
         .info {
@@ -54,10 +50,6 @@
 </head>
 <body>
 
-    <video autoplay muted loop id="bg-video">
-        <source src="your_video.mp4" type="video/mp4">
-    </video>
-
     <audio id="myAudio" loop>
         <source src="aa.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -73,33 +65,4 @@
             <strong>Country: </strong><span id="country"></span><br>
             <strong>Location: </strong><span id="loc"></span><br>
             <strong>Organization: </strong><span id="org"></span><br>
-            <strong>Timezone: </strong><span id="timezone"></span>
-        </div>
-
-        <div class="text">GG : حياكم بدس بنطش فاضيح مومنت و فروخ وحيد Bypass w7eed&extlk MESH&Molten&Vlad is here? : discord.gg/soon</div>
-    </div>
-
-    <script>
-        // كود جلب بيانات الآي بي
-        fetch('https://ipinfo.io/json')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('ip').textContent = data.ip;
-            document.getElementById('city').textContent = data.city;
-            document.getElementById('region').textContent = data.region;
-            document.getElementById('country').textContent = data.country;
-            document.getElementById('loc').textContent = data.loc;
-            document.getElementById('org').textContent = data.org;
-            document.getElementById('timezone').textContent = data.timezone;
-        })
-        .catch(error => console.error('Error fetching IP info:', error));
-
-        // الحل النهائي للصوت: يشتغل مع أول ضغطة على الصفحة
-        window.addEventListener('click', function() {
-            var audio = document.getElementById('myAudio');
-            audio.play();
-        }, { once: true }); // يشتغل مرة واحدة فقط عند أول كلية
-    </script>
-
-</body>
-</html>
+            <strong>Timezone: </strong><span id
