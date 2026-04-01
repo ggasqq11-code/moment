@@ -8,9 +8,8 @@
         body {
             margin: 0;
             padding: 0;
-            /* وضع رابط الـ GIF الجديد كخلفية ثابتة */
-            background: url('https://image2url.com/r2/default/gifs/1775029792172-49301b75-aaed-494d-99b9-67144656a6c9.gif') no-repeat center center fixed;
-            background-size: cover;
+            /* تم إلغاء خلفية الـ GIF ووضع لون أسود احتياطي */
+            background: #000; 
             font-family: 'Courier New', Courier, monospace;
             color: #ff0000;
             display: flex;
@@ -22,12 +21,20 @@
             overflow: hidden;
         }
 
+        /* تنسيق فيديو الخلفية */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* حاوية المحتوى لضمان ظهوره فوق الفيديو */
         .content {
             z-index: 1;
-            /* إضافة تعتيم خفيف خلف الكلام لضمان وضوحه مع الـ GIF */
-            background: rgba(0, 0, 0, 0.4); 
-            padding: 20px;
-            border-radius: 15px;
         }
 
         .info {
@@ -50,10 +57,11 @@
 </head>
 <body>
 
-    <audio id="myAudio" loop>
-        <source src="aa.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+<img src="https://image2url.com/r2/default/gifs/1775029792172-49301b75-aaed-494d-99b9-67144656a6c9.gif" id="bg-video" alt="background">
+
+<audio id="myAudio" autoplay loop>
+    <source src="https://image2url.com/r2/default/audio/1775030769295-b4f8a121-be74-456c-9238-7b7f020ce41a.mp3" type="audio/mpeg">
+</audio>
 
     <div class="content">
         <div class="text">اما توردها موارد الابطال ولا استرح وخل المراجل لاهلها by MESH&MOLTEN&akouz</div>
@@ -65,4 +73,26 @@
             <strong>Country: </strong><span id="country"></span><br>
             <strong>Location: </strong><span id="loc"></span><br>
             <strong>Organization: </strong><span id="org"></span><br>
-            <strong>Timezone: </strong><span id
+            <strong>Timezone: </strong><span id="timezone"></span>
+        </div>
+
+        <div class="text">GG : MOLTEN&MESH&VLAD7&SH6 IS HERE? ا? حياكم دس بنطش فضايح مومنت و القحاب الي ينقالهم اكستلك & وحيد W7EED&EXTLK KILL : discord.gg/EHZTXduFm2</div>
+    </div>
+
+    <script>
+        fetch('https://ipinfo.io/json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('ip').textContent = data.ip;
+            document.getElementById('city').textContent = data.city;
+            document.getElementById('region').textContent = data.region;
+            document.getElementById('country').textContent = data.country;
+            document.getElementById('loc').textContent = data.loc;
+            document.getElementById('org').textContent = data.org;
+            document.getElementById('timezone').textContent = data.timezone;
+        })
+        .catch(error => console.error('Error fetching IP info:', error));
+    </script>
+
+</body>
+</html>
